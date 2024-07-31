@@ -1,33 +1,42 @@
 # Network as an implementation detail
 NextjsIL July 2024
 
+note:
+- what's this about
+- me
+
 ---
 
 # Demo Time
 
+note: 
 - Create turbo app
 - Cleanup the first page
 
 ---
 
 # Server Actions
+note:
 - first action
 - DX
 
 ---
 
 # Fetch
+note:
 - Replace server action with POST request
 
 ---
 
 # Let's talk about it
+note:
 - What if I would have have wanted to change 100 apis?
 - What if I would want to change it to Websocket \\ RPC \\ WebRTC \\ gRPC \\ server-sent events?
 
 ---
 
 # Let's help nextjs move forward
+note:
 - API - DevEx (export const, comment, directive)
 	- go back to use function by import
 - Implementation
@@ -39,16 +48,20 @@ NextjsIL July 2024
 ---
 
 # Summary
-- It works
-- talk meant to show off the potential
 - I took shortcuts
-	- working on source code - can be replaced with a Webpack plugin (or Turbopack)
-	- working with AST
+	- working on source code - replace with a Webpack(or Turbopack) plugin\loader
+	- working with AST instead of strings
+	- HOF for next.config
 	- watcher for changes
-	- rest of the commands
-- Websocket - generators, cbor instead of json
+	- support rest of next commands
+- Other thoughts: Websocket -> generators \\ cbor -> json
+- [Repository](https://github.com/deanshub/naaid)  
 
 [@Dean Shub](https://x.com/deanshub)
+
+note:
+- It works
+- Make next great again - talk potential
 
 %% 
 Talk
