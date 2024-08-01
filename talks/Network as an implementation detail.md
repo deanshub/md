@@ -55,7 +55,10 @@ note:
 	- watcher for changes
 	- support rest of next commands
 - Other thoughts: Websocket -> generators \\ cbor -> json
-- [Repository](https://github.com/deanshub/naaid)  
+
+---
+# Thank you
+- [Demo Repository](https://github.com/deanshub/naaid)  
 
 [@Dean Shub](https://x.com/deanshub)
 
