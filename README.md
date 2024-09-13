@@ -1,1 +1,1 @@
-My obsidian notes
+My obsidian notes manages my life
