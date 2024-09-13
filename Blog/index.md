@@ -1,0 +1,1 @@
+[A tale of a table](./A tale of a table)

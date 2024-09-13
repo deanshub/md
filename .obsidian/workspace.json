@@ -13,8 +13,9 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "projects/obsidian blog.md",
+                "file": "Blog/index.md",
                 "mode": "source",
+                "backlinks": false,
                 "source": false
               }
             }
@@ -85,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "projects/obsidian blog.md",
+                "file": "Blog/index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "projects/obsidian blog.md",
+                "file": "Blog/index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "projects/obsidian blog.md"
+                "file": "Blog/index.md"
               }
             }
           }
@@ -133,8 +134,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -152,8 +152,10 @@
   },
   "active": "7c2be5557812237f",
   "lastOpenFiles": [
-    "projects/Sisense.md",
+    "Blog/A tale of a table.md",
+    "Blog/index.md",
     "projects/obsidian blog.md",
+    "projects/Sisense.md",
     "README.md",
     "projects"
   ]

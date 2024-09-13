@@ -1,2 +1,2 @@
-make the Blog directory publish with gh pages on commit to main
-add tailwind and styleup the md to fit the needs
+- [ ] make the Blog directory publish with gh pages on commit to main
+- [ ] add tailwind and styleup the md to fit the needs
