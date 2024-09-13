@@ -19,7 +19,8 @@ jobs:
 
       - name: Converts Markdown to HTML
         run: |
-          npx markdown-to-html-cli --source Blog --output dist
+          npm install markdown-to-document -g
+          mdtodoc "Blog/**/*.md" --theme "github" --highlight-style "atom-one-light" --code-copy --mermaid --dest dist
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
