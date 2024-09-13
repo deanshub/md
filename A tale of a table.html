@@ -1,0 +1,94 @@
+<p>a feature request came along straight from the user
+he wants an integration between our system and another system which is within the MainFrame
+until our system came along he used export to excel from the MainFrame system then he edited the excel manually
+so the most acceptable solution for him was to have the excel within our system
+the 2 most popular packages for that in react are <a href="https://reactgrid.com/">https://reactgrid.com/</a> and <a href="https://iddan.github.io/react-spreadsheet/">https://iddan.github.io/react-spreadsheet/</a> I took Idan’s component since the look and feel was a better fit
+integration was pretty easy and in less than an hour I already had it running (awesome work Idan! )
+but than we needed to add 2 more features the first one was filters per coulmn and the second one was row selection (which will allow uploading selected rows)
+it took a couple of hours to implement but I got the filters right and added a first column with checkbox for row selection
+but once I added the selection part I had to make this component controlled (instead of uncontrolled)
+which made it 10 times slower and that’s on my demo excel, the users excel has about 50 times more data
+and that’s where the sleeves rolled down, after a talk with @schniz we decided to make it uncontrolled and that means to make it a clean new component</p>
+<p>so the cleanest way to make it uncontrolled and than upload it’s data is to make the table a form element
+but since I want only the selected rows the way I did it was to make to form outside the actual table and specify the form name only in the selected rows input’s
+which is pretty genius idea in my opinon
+then to upload the data you can just add a button anywhere with the type=“submit” and the form name
+and it’s even easier with nextjs making the form action a server action</p>
+<p>the thing that I didn’t like is that in form action you can’t really get the response or a nice error handler
+that’s when I had to wrap the regular react form with my own form</p>
+<pre class="code-block hljs"><code class="language-typescript typescript">
+<span class="hljs-keyword">import</span> { useCallback } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">FormProps</span> = {
+  afterSubmit?: <span class="hljs-function">(<span class="hljs-params">data?: <span class="hljs-built_in">unknown</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>;
+  onError?: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">error</span>: <span class="hljs-built_in">unknown</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>;
+} &amp; <span class="hljs-title class_">React</span>.<span class="hljs-property">DetailedHTMLProps</span>&lt;
+  <span class="hljs-title class_">React</span>.<span class="hljs-property">FormHTMLAttributes</span>&lt;<span class="hljs-title class_">HTMLFormElement</span>&gt;,
+  <span class="hljs-title class_">HTMLFormElement</span>
+&gt;;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Form</span>(<span class="hljs-params"><span class="hljs-attr">props</span>: <span class="hljs-title class_">FormProps</span></span>) {
+  <span class="hljs-keyword">const</span> { afterSubmit, <span class="hljs-attr">action</span>: previousAction, ...rest } = props;
+  <span class="hljs-comment">// make action run afterSubmit</span>
+  <span class="hljs-keyword">const</span> action = <span class="hljs-title function_">useCallback</span>(
+    <span class="hljs-title function_">async</span> (<span class="hljs-attr">formData</span>: <span class="hljs-title class_">FormData</span>) =&gt; {
+      <span class="hljs-keyword">let</span> <span class="hljs-attr">data</span>: <span class="hljs-built_in">unknown</span>;
+      <span class="hljs-keyword">if</span> (previousAction) {
+        <span class="hljs-keyword">try</span> {
+          <span class="hljs-comment">// @ts-expect-error-next-line -- <span class="hljs-doctag">TODO:</span> fix</span>
+          data = <span class="hljs-keyword">await</span> <span class="hljs-title function_">previousAction</span>(formData);
+        } <span class="hljs-keyword">catch</span> (error) {
+          <span class="hljs-keyword">if</span> (props.<span class="hljs-property">onError</span>) {
+            props.<span class="hljs-title function_">onError</span>(error);
+          }
+          <span class="hljs-keyword">return</span>;
+        }
+      }
+      <span class="hljs-keyword">if</span> (afterSubmit) {
+        <span class="hljs-title function_">afterSubmit</span>(data);
+      }
+    },
+    [previousAction, afterSubmit]
+  );
+
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> {<span class="hljs-attr">...rest</span>} <span class="hljs-attr">action</span>=<span class="hljs-string">{action}</span> /&gt;</span></span>;
+}
+
+
+</code><textarea id="_h9c63ozlf" rows="1" cols="2">import { useCallback } from 'react';
+
+export type FormProps = {
+  afterSubmit?: (data?: unknown) =&gt; void;
+  onError?: (error: unknown) =&gt; void;
+} &amp; React.DetailedHTMLProps&lt;
+  React.FormHTMLAttributes&lt;HTMLFormElement&gt;,
+  HTMLFormElement
+&gt;;
+
+export function Form(props: FormProps) {
+  const { afterSubmit, action: previousAction, ...rest } = props;
+  // make action run afterSubmit
+  const action = useCallback(
+    async (formData: FormData) =&gt; {
+      let data: unknown;
+      if (previousAction) {
+        try {
+          // @ts-expect-error-next-line -- TODO: fix
+          data = await previousAction(formData);
+        } catch (error) {
+          if (props.onError) {
+            props.onError(error);
+          }
+          return;
+        }
+      }
+      if (afterSubmit) {
+        afterSubmit(data);
+      }
+    },
+    [previousAction, afterSubmit]
+  );
+
+  return &lt;form {...rest} action={action} /&gt;;
+}</textarea></pre>
+
