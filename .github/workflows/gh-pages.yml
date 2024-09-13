@@ -24,6 +24,7 @@ jobs:
       - name: Converts Markdown to HTML
         run: |
           npm install markdown-to-document -g
+          mkdir -p ./dist
           mdtodoc "Blog/**/*.md" --theme "github" --highlight-style "atom-one-light" --code-copy --mermaid --dest ./dist
 
       - name: Deploy
