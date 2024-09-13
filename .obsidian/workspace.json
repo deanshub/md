@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Blog/index.md",
+                "file": "projects/Sisense.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Blog/index.md",
+                "file": "projects/Sisense.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Blog/index.md",
+                "file": "projects/Sisense.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Blog/index.md"
+                "file": "projects/Sisense.md"
               }
             }
           }
@@ -152,11 +152,18 @@
   },
   "active": "7c2be5557812237f",
   "lastOpenFiles": [
-    "Blog/A tale of a table.md",
+    "projects/Vetrina.md",
+    "README.md",
+    "projects/Krembo.md",
+    "thoughts/Nextjs Crash Course.md",
+    "thoughts/ideas for roy.md",
+    "thoughts",
     "Blog/index.md",
+    "Interview.md",
+    "Kavana.md",
+    "Blog/A tale of a table.md",
     "projects/obsidian blog.md",
     "projects/Sisense.md",
-    "README.md",
     "projects"
   ]
 }
